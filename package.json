@@ -1,0 +1,30 @@
+{
+  "name": "lazyurl",
+  "version": "1.0.0",
+  "description": "A quick URL shortner in nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "forever": "forever index.js"
+  },
+  "keywords": [
+    "URL"
+  ],
+  "author": "Henrik Gerdes, hegerdes@uni-osnabrueck.de",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "forever": "^3.0.0",
+    "helmet": "^4.0.0",
+    "monk": "^7.3.1",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.12",
+    "yup": "^0.29.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
