@@ -17,7 +17,7 @@ NON existent. Feel free to create a FrontEnd. API is accessible for everyone. Us
 ## API
 
 ### Create URL
-Create a POST request to `[BASEURL] with the following content in body:
+Create a POST request to `[BASEURL]/url with the following content in body:
 ```JSON
 {
     "name": "myURL",                    #Optional
