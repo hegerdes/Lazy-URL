@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 const morgan = require("morgan");
 const helmet = require("helmet");
 const yup = require("yup");
 const sqlite3 = require("sqlite3").verbose();
 const { nanoid } = require("nanoid");
 
-var db = new sqlite3.Database("urls.db");
+var db = new sqlite3.Database("data/urls.db");
 
 const schema = yup.object().shape({
   name: yup
@@ -17,18 +18,25 @@ const schema = yup.object().shape({
 });
 
 const app = express();
-app.use(helmet());
+app.set('views', path.join(__dirname, 'public'));
+app.set('view engine', 'ejs');
+
+app.use(
+  helmet({
+    referrerPolicy: { policy: "no-referrer" },
+  })
+);
 app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
-//app.use(express.static('./public'))
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 var stmt = "SELECT * FROM urls WHERE (name) = ?;";
 
 app.get("/", (req, res) => {
-  res.json({
-    message: "LazyURL",
-  });
+  res.setHeader("Content-Security-Policy", "default-src * 'unsafe-inline' 'unsafe-eval'; img-src * ")
+  res.render('index')
 });
 
 app.get('/:id', (req, res) => {

@@ -1,2 +1,2 @@
-node_modules/**
-urls.db
+**/node_modules/**
+data/**
