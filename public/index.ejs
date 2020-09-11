@@ -91,9 +91,7 @@
 				<button type="submit">Create</button>
 			</div>
 		</form>
-		<pre>
-			{{JSON.stringify(created, null, 2)}}
-		</pre>
+		<div id="res" style="text-align: center;"></div>
 	</main>
 
 
@@ -108,11 +106,6 @@
 			},
 			methods: {
 				async createUrl() {
-					console.log(this.url, this.name);
-					console.log(JSON.stringify({
-						url: this.url,
-						name: this.name,
-					}))
 					const response = await fetch("/url", {
 						method: "POST",
 						body: JSON.stringify({
@@ -123,7 +116,26 @@
 							"content-type": "application/json"
 						}
 					});
-					this.created = await response.json();
+					var getUrl = window.location;
+					var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+					var tmp = await response.json();
+					var a = JSON.stringify(tmp)
+					var b = JSON.parse(a)
+					var out_url = baseUrl + '/' + b["name"]
+					this.created = out_url
+
+
+					var para = document.createElement("a");
+					var node = document.createTextNode("Your URL is: " + out_url);
+					para.appendChild(node);
+
+					para.title = "URL is: " + out_url;
+					para.style =
+      				para.href = out_url
+					var element = document.getElementById("res");
+					element.appendChild(para)
+
+
 				},
 			},
 		});
