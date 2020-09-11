@@ -121,7 +121,7 @@
 					var tmp = await response.json();
 					var a = JSON.stringify(tmp)
 					var b = JSON.parse(a)
-					var out_url = baseUrl + '/' + b["name"]
+					var out_url = baseUrl + b["name"]
 					this.created = out_url
 
 
