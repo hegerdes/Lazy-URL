@@ -33,4 +33,4 @@ FrontEnd
 
 ----
 
-## [DEMO](https://lazy-url.herokuapp.com/)
+## [Live DEMO](https://lazyurl.henrikgerdes.me/)
