@@ -119,6 +119,7 @@
 					var getUrl = window.location;
 					var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
 					var tmp = await response.json();
+					console.log(response)
 					var a = JSON.stringify(tmp)
 					var b = JSON.parse(a)
 					var out_url = baseUrl + b["name"]

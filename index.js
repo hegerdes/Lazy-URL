@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const yup = require("yup");
 const sqlite3 = require("sqlite3").verbose();
 const { nanoid } = require("nanoid");
+const ip = require("ip");
 
 var db = new sqlite3.Database("data/urls.db");
 
@@ -105,7 +106,24 @@ app.use((error, req, res, next) => {
   });
 });
 
+// Save shutdown
+function shutdown() {
+  process.exit(0);
+}
+
+// Exit Signal
+process.on("SIGTERM", () => {
+  logger.info('SIGTERM signal received...');
+  shutdown();
+});
+
+// Exit Signal
+process.on("SIGINT", function (_code) {
+  logger.info('SIGINT received...');
+  shutdown();
+});
+
 const port = process.env.PORT || 4242;
 app.listen(port, () => {
-  console.log("Listiening on http://localhost:" + port);
+  console.log(`Listiening on http://${ip.address()}:${port}`);
 });
